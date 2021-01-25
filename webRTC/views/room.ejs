@@ -13,21 +13,100 @@
     ></script>
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="script.js" defer></script>
-    <title>Document</title>
+
+    <!-- bootstrap 5 -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style type="text/css">
+      @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <title>CarMing</title>
     <style>
-      #video-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, 300px);
-        grid-auto-rows: 300px;
+      @font-face {
+        font-family: 'TmoneyRoundWindRegular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      body {
+        background-color: black;
+        font-family: 'TmoneyRoundWindRegular';
+      }
+      footer {
+        background-color: white;
+        height: 80px;
       }
       video {
-        width: 100%;
-        height: 100%;
+        margin: 30px;
+        width: 300px;
+        height: 300px;
         object-fit: cover;
+        border-radius: 30px;
       }
+      #end {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: -webkit-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+        padding-bottom: 10px;
+      }
+      a, .copy {
+        text-decoration:none;
+        color: black;
+      }
+      .copy::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+      }
+      a:hover, .copy:hover {
+        color: #ff6c00;
+      }
+      textarea:focus {outline:none;}
     </style>
   </head>
   <body>
-    <div id="video-grid"></div>
+      <div id="video-grid"></div>
+      <footer class="navbar fixed-bottom">
+
+        <!-- Large button groups (default and split) -->
+        <div class="btn-group dropup position-absolute top-50 start-0 translate-middle-y">
+          <a class="ropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-left: 40px;">
+            참여 링크 보기
+          </a>
+          
+            <div class="dropdown-menu p-4 text-muted" style="min-width: 300px; margin-left: 10px;">
+              <textarea id="link" class="mb-0" value="" readonly style="border: 0; width: 400px; height: 50px; overflow: hidden;"></textarea>
+
+              <div class="copy" style="margin-top: 10px" onclick="CopyUrlToClipboard();"><i class="bi bi-clipboard" style="margin-right: 10px;"></i><span >참여 링크 복사</span></div>
+            </div>
+          
+        </div>
+        
+        <button id="end" type="button" class="btn position-absolute top-50 start-50 translate-middle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+          </svg>
+        </button>
+      </footer>
+
+      <script>
+        const url = document.getElementById("link");
+        url.value = window.location.href;
+
+        function CopyUrlToClipboard()
+
+      {
+
+        url.select();  // input!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        document.execCommand("copy"); // 클립보드에 복사합니다.
+
+        url.blur(); // 선택된 것을 다시 선택안된것으로 바꿈니다.
+
+        alert("URL이 클립보드에 복사되었습니다"); 
+      }
+
+      </script>
   </body>
 </html>

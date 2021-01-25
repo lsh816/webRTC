@@ -32,11 +32,14 @@ io.on('connection', (socket) => {
   socket.on('join-room', (roomId, userId) => {
     socket.join(roomId);
     socket.to(roomId).broadcast.emit('user-connected', userId);
+    console.log(userId + 'is connected');
 
     socket.on('disconnect', () => {
       socket.to(roomId).broadcast.emit('user-disconnected', userId);
+      console.log(userId + 'is disconnected');
     });
   });
 });
 
 server.listen(3000);
+console.log('server is running...');
