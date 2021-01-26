@@ -79,7 +79,7 @@
             <div class="dropdown-menu p-4 text-muted" style="min-width: 300px; margin-left: 10px;">
               <textarea id="link" class="mb-0" value="" readonly style="border: 0; width: 400px; height: 50px; overflow: hidden;"></textarea>
 
-              <div class="copy" style="margin-top: 10px" onclick="CopyUrlToClipboard();"><i class="bi bi-clipboard" style="margin-right: 10px;"></i><span >참여 링크 복사</span></div>
+              <div class="copy" style="margin-top: 10px; float: right; padding-right: 5px;" onclick="CopyUrlToClipboard();"><i class="bi bi-clipboard" style="margin-right: 10px;"></i><span >참여 링크 복사</span></div>
             </div>
           
         </div>
@@ -92,21 +92,21 @@
       </footer>
 
       <script>
-        const url = document.getElementById("link");
-        url.value = window.location.href;
+        const value = document.getElementById("link").value;
+        const url = window.location.href;
 
-        function CopyUrlToClipboard()
+        function CopyUrlToClipboard(){
+          value.select();  
+          document.execCommand("copy"); 
 
-      {
+          value.blur(); 
 
-        url.select();  // input!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        document.execCommand("copy"); // 클립보드에 복사합니다.
-
-        url.blur(); // 선택된 것을 다시 선택안된것으로 바꿈니다.
-
-        alert("URL이 클립보드에 복사되었습니다"); 
-      }
-
-      </script>
+          alert("참여링크가 클립보드에 복사되었습니다"); 
+        }
+        
+        document.getElementById("end").onclick = function(){
+          alert('작동');
+        };
+   </script>
   </body>
 </html>
