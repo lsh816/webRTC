@@ -92,20 +92,21 @@
       </footer>
 
       <script>
-        const value = document.getElementById("link").value;
-        const url = window.location.href;
+        const url = document.getElementById("link");
+        url.value = window.location.href;
 
         function CopyUrlToClipboard(){
-          value.select();  
+          url.select();  
           document.execCommand("copy"); 
 
-          value.blur(); 
+          url.blur(); 
 
           alert("참여링크가 클립보드에 복사되었습니다"); 
         }
         
         document.getElementById("end").onclick = function(){
-          alert('작동');
+          alert('통화를 종료합니다.');
+          location.href = "http://localhost:8081/carming/camMeet.do";
         };
    </script>
   </body>
